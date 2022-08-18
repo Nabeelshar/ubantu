@@ -1,0 +1,308 @@
+import time
+from importlib import reload
+from pickle import NONE
+from sqlite3 import Time
+
+import telebot
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+
+
+api_key = '5504904827:AAF_9Cg9BEVMgmxQfYB41U6bp7DUTKlQ6DA ' #Por informações do seu bot.
+user_id = '1761468831'  # CHAT 
+bot = telebot.TeleBot(token=api_key)
+
+options = webdriver.ChromeOptions()
+options.add_argument('--headless')
+nav = webdriver.Chrome(service=Service(
+    ChromeDriverManager().install()), chrome_options=options)
+
+reversion = 'ATIVO' 
+xx = 0
+nav.get('https://blaze.com/pt/games/double')
+
+
+while True:
+    time.sleep(2)
+    girando = nav.find_element(By.XPATH, '//*[@id="roulette-timer"]/div[1]').text
+
+    if girando == 'Girando...':
+        xx = 1
+        print('Analise START')
+        time.sleep(15)
+        pegardados = nav.find_element(
+            By.XPATH, '//*[@id="roulette-recent"]').text
+        tfg = pegardados.split()
+
+        def qualnum(x):
+
+            if x == '1':
+                return 1
+
+            if x == '2':
+                return 2
+
+            if x == '3':
+                return 3
+
+            if x == '4':
+                return 4
+
+            if x == '5':
+                return 5
+
+            if x == '6':
+                return 6
+
+            if x == '7':
+                return 7
+
+            if x == '8':
+                return 8
+
+            if x == '9':
+                return 9
+
+            if x == '10':
+                return 10
+
+            if x == '11':
+                return 11
+
+            if x == '12':
+                return 12
+
+            if x == '13':
+                return 13
+
+            if x == '14':
+                return 14
+
+        def qualcor(x):
+
+            if x == '1':
+                return '🔴'
+
+            if x == '2':
+                return '🔴'
+
+            if x == '3':
+                return '🔴'
+
+            if x == '4':
+                return '🔴'
+
+            if x == '5':
+                return '🔴'
+
+            if x == '6':
+                return '🔴'
+
+            if x == '7':
+                return '🔴'
+
+            if x == '8':
+                return '⚫'
+
+            if x == '9':
+                return '⚫'
+
+            if x == '10':
+                return '⚫'
+
+            if x == '11':
+                return '⚫'
+
+            if x == '12':
+                return '⚫'
+
+            if x == '13':
+                return '⚫'
+
+            if x == '14':
+                return '⚫'
+
+    if xx == 1:
+        xx = 0
+
+        if reversion == 'ATIVO':
+            pd = tfg[0:5]
+
+            mapeando = map(qualnum, pd)
+            mapeando2 = map(qualcor, pd)
+            finalnum_reversion = list(mapeando)
+            finalcor_reversion = list(mapeando2)
+
+            def verificarreversion(num):                
+
+                if num == ['🔴', '🔴', '🔴', '🔴', '🔴' ]:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! ⚫
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+
+                if num == ['⚫', '⚫', '⚫', '⚫', '⚫' ]:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! 🔴
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+                if num == ['⚫', '⚫', '🔴', '🔴', '⚫']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! ⚫
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+
+                if num == ['⚫', '⚫', '🔴', '🔴', '⚫']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! ⚫
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+                if num == ['🔴', '⚫', '⚫', '⚫', '⚫']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! 🔴
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+
+                if num == ['🔴', '⚫', '⚫', '🔴', '🔴']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! 🔴
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+                if num == ['⚫', '⚫', '🔴', '🔴', '🔴']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! 🔴
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+
+                if num == ['⚫', '⚫', '🔴', '🔴', '⚫']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! ⚫
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+                if num == ['🔴', '⚫', '⚫', '🔴', '🔴']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! ⚫
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+
+                if num == ['🔴', '🔴', '🔴', '⚫', '⚫']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! ⚫
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+                if num == ['🔴', '🔴', '⚫', '🔴', '🔴']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! ⚫
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+
+                if num == ['⚫', '🔴', '🔴', '⚫', '⚫']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! 🔴
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+                if num == ['⚫', '🔴', '⚫', '🔴', '⚫']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! ⚫
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+
+                if num == ['🔴', '⚫', '⚫', '🔴', '⚫']:
+                    return bot.send_message(chat_id=user_id, text='''
+🔔⚠️🚨Atenção🚨⚠️🔔 
+✅Entrada confirmada! ⚫
+✅Proteção no: ⚪️
+✅Ate Gale 2 🐓🐓 
+🎲Jogue agora Blaze Double🎲  
+  (https://blaze.com/r/nb372Z)      
+                                             💬 
+by: @freecabonetbot 🥷🏾
+                ''')
+
+            print(finalnum_reversion)
+            print(finalcor_reversion)
+            testreversion = verificarreversion(finalcor_reversion)
+            print(testreversion)
+
+ 
